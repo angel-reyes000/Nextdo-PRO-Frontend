@@ -4,31 +4,6 @@ import styles from '../styles/tasks.module.scss'
 import { FaPlus, FaCalendar, FaSearch } from 'react-icons/fa'
 import { useState, useRef, useEffect } from 'react'
 
-function Add_task ({ title, description, deadline, priority }) {
-    return (
-        <div className={styles.tasks}>
-            <div className={styles.tasks_checkbox}>
-                <input type="checkbox"></input>
-            </div>
-            <div className={styles.information_tasks}>
-                <div className={styles.header_tasks}>
-                    <p>{priority}</p>
-                    <h2>{title}</h2>
-                </div>
-                <div className={styles.description_tasks}>
-                    <p>{description}</p>
-                </div>
-                <div className={styles.date_tasks}>
-                    <p><FaCalendar style={{display: 'inline'}}/> {deadline}</p>
-                </div>
-            </div>
-            <div className={styles.three_dots_tasks}>
-                <p>...</p>
-            </div>
-        </div>
-    )
-}
-
 let ids = 0;
 let list_tasks = []
 
@@ -105,7 +80,7 @@ export default function Tasks () {
                                 <input value={inputCreateDeadLineTask} onChange={(e) => setInputCreateDeadLineTask(e.target.value)} type='date' placeholder='Deadline' id="deadline" name="deadline"></input>
                             </div>
                             <button onClick={() => {
-                                setTasks([...tasks, {id: ids, title: inputCreateTask, description: inputCreateDescriptionTask, deadline: inputCreateDeadLineTask, priority: priorityStateButton}])
+                                setTasks([...tasks, {id: ids++, title: inputCreateTask, description: inputCreateDescriptionTask, deadline: inputCreateDeadLineTask, priority: priorityStateButton}])
                                 setInputCreateTask('')
                                 setInputCreateDescriptionTask('')
                                 setInputCreateDeadLineTask('')
@@ -119,6 +94,7 @@ export default function Tasks () {
                                 }}>
                                 <FaPlus size={20} style={{display: 'inline-block', alignContent: 'center', marginBottom: '2%'}}/> Add Task
                             </button>
+                            {}
                         </div>
                         {inputCreateTask.length > 0 ? (
                             <div className={styles.description_task}>
@@ -156,7 +132,7 @@ export default function Tasks () {
                     {/* ---------------------------- Tasks -------------------------------*/}
                     {tasks.map((task) => (
                         <>
-                            <div className={styles.tasks} style={{borderLeft: `7px solid ${task.priority === 'high' ? 'red' : task.priority === 'medium' ? 'yellow' : 'green'}`}}>
+                            <div key={task.id} className={styles.tasks} style={{borderLeft: `7px solid ${task.priority === 'high' ? 'red' : task.priority === 'medium' ? 'yellow' : 'green'}`}}>
                                 <div className={styles.tasks_checkbox}>
                                     <input type="checkbox"></input>
                                 </div>
