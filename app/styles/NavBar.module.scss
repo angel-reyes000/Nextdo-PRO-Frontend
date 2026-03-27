@@ -49,19 +49,64 @@
     .fasearch {
         opacity: 50%;
     }
+}
 
-    input {
-        margin: 2% 0% 0% 0%;
-        height: 45%;
-        width: 70%;
-        font-weight: 500;
-        font-size: 110%;
-        background-color: rgb(226, 226, 226);
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
+.write_search {
+    display: flex;
+    align-items: center;
+    margin: 2% 0% 0% 0%;
+    height: 45%;
+    width: 70%;
+    font-weight: 500;
+    font-size: 110%; 
+    background-color: rgb(226, 226, 226);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    
+    p{
+        animation-name: search_animation;
+        animation-duration: 10s;
+        animation-timing-function: linear;
+        animation-delay: 0ms;
+        animation-iteration-count: infinite;
+        overflow: hidden;
+        white-space: nowrap;
+        color: rgb(111, 111, 111);
+        display: inline;
+        max-width: 40%;
     }
-    input:focus {
-        outline: none;
+   
+}
+
+@keyframes search_animation {
+    from {
+        width: 0%;
+    } to {
+        width: 100%;
+    }
+}
+
+.stick_move {
+    display: inline;
+    animation-name: stick_animation;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-delay: 0ms;
+    animation-iteration-count: infinite;
+}
+
+@keyframes stick_animation {
+    0% {
+        opacity: 0;
+    } 
+    50% {
+        opacity: 0;
+    }
+    51%{
+        opacity: 1;
+    }
+    100% {
+        opacity: 1;
     }
 }
 
@@ -86,6 +131,12 @@
     .search_navbar{
         .fasearch {
             font-size: 0%;
+        }
+    }
+    .write_search {
+        p {
+            max-width: 100%;
+            animation-duration: 3s;
         }
     }
 }

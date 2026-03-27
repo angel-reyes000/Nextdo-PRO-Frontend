@@ -19,7 +19,7 @@ export default function Tasks () {
     const [tasks, setTasks] = useState(list_tasks)
     const [inputSearchTask, setInputSearchTask] = useState('')
     const [selectPriority, setSelectPriority] = useState('all')
-    const [selectDeadLine, setSelectDeadLine] = useState('')
+    const [selectDeadLine, setSelectDeadLine] = useState('asc')
 
     let refHigh = refPriorityHigh.current
     let refMedium = refPriorityMedium.current
@@ -57,10 +57,6 @@ export default function Tasks () {
         }
         console.log("Cambio de prioridad")
     }, [priorityStateButton])
-
-    function Search_engine () {
-        return <Task tasks={tasks} inputSearchTask={inputSearchTask} selectPriority={selectPriority} selectDeadLine={selectDeadLine}/>
-    }
 
     return (
         <>  
@@ -127,7 +123,7 @@ export default function Tasks () {
                         <div className={styles.select_filters_and_search_sort}>
                             <select value={selectDeadLine} onChange={(e) => setSelectDeadLine(e.target.value)}>
                                 <option value='asc'>Sort by: [Deadline Asc]</option>
-                                <option value='desc'>Sort by: [Deadline Descs]</option>                                
+                                <option value='desc'>Sort by: [Deadline Descs]</option>
                             </select>
                         </div>
                         <div className={styles.priority_filters_and_search}>
@@ -137,7 +133,7 @@ export default function Tasks () {
                         </div>
                     </div>
                     {/* ---------------------------- Tasks -------------------------------*/}
-                    <Search_engine />
+                    <Task tasks={tasks} inputSearchTask={inputSearchTask} selectPriority={selectPriority} selectDeadLine={selectDeadLine}/>
                 </div>
             </div>
         </>
