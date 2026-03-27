@@ -1,9 +1,19 @@
 "use client"
 
 import styles from '../styles/tasks.module.scss'
-import { FaCalendar } from 'react-icons/fa'
+import { FaCalendar, FaPlus } from 'react-icons/fa'
 
 export default function Task ({ tasks, inputSearchTask, selectPriority, selectDeadLine }) {
+    if (tasks.length === 0) {
+        return (
+            <>
+                <div className={styles.empty_tasks}>
+                    <FaPlus style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}/><h1> Create a task!</h1>
+                </div>
+            </>
+        )
+    }
+
     if (inputSearchTask !== '' && selectPriority === 'all' && selectDeadLine === 'asc') {
         return (
             <>
