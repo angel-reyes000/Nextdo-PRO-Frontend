@@ -27,8 +27,10 @@ export default function NavBar(){
                     <div className={styles.fasearch_bg}>
                         <FaSearch className={styles.fasearch}/>
                     </div>
+                    <div className={styles.write_search}>
+                        <p>NextDo PRO, Welcome!<span className={styles.stick_move}>|</span></p>
+                    </div>
                     
-                    <input placeholder='Search...' value={input} onChange={(e) => setInput(e.target.value)} disabled={pathName === '/' ? true : false}/>
                 </div>
                 <div className={styles.imagens_navbar}>
                     <Image src={cuadritos} width={60} height={60} alt='Cuadritos de decoracion'/>
