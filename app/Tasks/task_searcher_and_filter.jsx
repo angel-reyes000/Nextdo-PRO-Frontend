@@ -1,9 +1,13 @@
 "use client"
 
-import styles from '../styles/tasks.module.scss'
+import styles from '../styles/task_searcher_and_filter.module.scss'
 import { FaCalendar, FaPlus } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
+import Task_edit from './task_edit'
 
 export default function Task ({ tasks, inputSearchTask, selectPriority, selectDeadLine }) {
+    const [editing, setEditing] = useState(false)
+
     if (tasks.length === 0) {
         return (
             <>
@@ -43,9 +47,10 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
         )
     } else if (inputSearchTask === '' && selectPriority === 'all' && selectDeadLine === 'asc') {
         return (
-            <>
+            <>  
+                {editing && <Task_edit edit={editing} />}
                 {tasks.sort((primero, segundo) => new Date(primero.deadline) - new Date(segundo.deadline)).map((task) => (
-                    <div key={task.id} className={styles.tasks} style={{borderLeft: `7px solid ${task.priority === 'high' ? 'red' : task.priority === 'medium' ? 'yellow' : 'green'}`}}>
+                    <div key={task.id} onClick={() => setEditing(!editing)} className={styles.tasks} style={{borderLeft: `7px solid ${task.priority === 'high' ? 'red' : task.priority === 'medium' ? 'yellow' : 'green'}`}}>
                         <div className={styles.tasks_checkbox}>
                             <input type="checkbox"></input>
                         </div>

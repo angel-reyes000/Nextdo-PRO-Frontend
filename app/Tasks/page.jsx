@@ -1,9 +1,11 @@
 "use client"
 
-import styles from '../styles/tasks.module.scss'
-import { FaPlus, FaCalendar, FaSearch } from 'react-icons/fa'
+import styles from '../styles/task_searcher_and_filter.module.scss'
+import styless from '../styles/task.edit.module.scss'
+import { FaPlus, FaCalendar, FaSearch, FaTimes, FaSave } from 'react-icons/fa'
 import { useState, useRef, useEffect } from 'react'
-import Task from './Task.jsx'
+import Task from './task_searcher_and_filter.jsx'
+import Task_edit from './task_edit.jsx'
 
 let ids = 0;
 let list_tasks = []
@@ -20,6 +22,55 @@ export default function Tasks () {
     const [inputSearchTask, setInputSearchTask] = useState('')
     const [selectPriority, setSelectPriority] = useState('all')
     const [selectDeadLine, setSelectDeadLine] = useState('asc')
+
+    // function Task_edit () {
+    //     const [editing, setEditing] = useState(false)
+    //     const [editTitle, setEditTitle] = useState()
+    //     if (editing === true) {
+    //         return (
+    //             <div className={styless.backgorund_task_edit}>
+    //                 <div className={styless.card_edit}>
+    //                     <div className={styless.edit_header}>
+    //                         <div className={styless.edit_title}>
+    //                             <h1>Title: </h1>
+    //                             <input placeholder='Edit your title...'></input>
+    //                         </div>
+    //                         <button onClick={() => setEditing(!editing)}><FaTimes size={30}/></button>
+    //                     </div>
+    //                     <hr style={{backgroundColor: 'black', border: '2px solid black', width: '100%'}}/>
+    //                     <div className={styless.edit_description}>
+    //                         <h2>Description:</h2>
+    //                         <textarea placeholder='Edit your description...'></textarea>
+    //                     </div>
+    //                     <div className={styless.edit_date_and_priority}>
+    //                         <div className={styless.edit_date}>
+    //                             <label htmlFor="date">Date:</label>
+    //                             <input type='date' name='date' id="date"></input>
+    //                         </div>
+    //                         <div className={styless.edit_priority}>
+    //                             <label htmlFor="priority">Priority:</label>
+    //                             <select id="priority">
+    //                                 <option value='high'>High</option>
+    //                                 <option value='medium'>Medium</option>
+    //                                 <option value='low'>Low</option>
+    //                             </select>
+    //                         </div>
+                            
+    //                     </div>
+    //                     <div className={styless.edit_save_and_close}>
+    //                         <div className={styless.edit_button_close}>
+    //                             <button>Cancel</button>
+    //                         </div>
+    //                         <div className={styless.edit_button_save}>
+    //                             <button><FaSave style={{display: 'inline', marginBottom: '8%'}}/> Save</button>
+    //                         </div>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         )
+    //     } 
+    // }
+
 
     let refHigh = refPriorityHigh.current
     let refMedium = refPriorityMedium.current
