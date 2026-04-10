@@ -6,7 +6,8 @@ import { FaPlus, FaCalendar, FaSearch, FaTimes, FaSave } from 'react-icons/fa'
 import { useState, useRef, useEffect } from 'react'
 import Task from './task_searcher_and_filter.jsx'
 import Task_edit from './task_edit.jsx'
-import { refresh } from 'next/cache.js'
+import Modal from './modal_expired_token.jsx'
+import { useRouter } from 'next/navigation';
 
 let ids = 0;
 let list_tasks = []
@@ -25,6 +26,10 @@ export default function Tasks () {
     const [selectPriority, setSelectPriority] = useState('all')
     const [selectDeadLine, setSelectDeadLine] = useState('asc')
     const [editingTask, setEditingTask] = useState(null)
+    const [expiredToken, setExpiredToken] = useState(false)
+    const router = useRouter()
+
+    const date = new Date().toLocaleDateString();
 
     const handleUpdateTask = (updatedTask) => {
         setTasks(tasks.map(task => task.id === updatedTask.id ? updatedTask : task))
@@ -68,6 +73,10 @@ export default function Tasks () {
         console.log("Cambio de prioridad")
     }, [priorityStateButton])
 
+    function activeDialog ({ bool }) {
+        setExpiredToken(bool)
+    }
+
     useEffect(() => { 
         const getData = async () => {
             const token = localStorage.getItem('token');
@@ -77,10 +86,13 @@ export default function Tasks () {
                         'Authorization': token
                     }
                 });
+                if(!res.ok) {
+                    activeDialog({ bool:true })
+                }
                 const data = await res.json();
                 setTasks(data.response || [])
             } catch (error) {
-                console.error("Error al obtener datos");    
+                console.log("Error al obtener datos", error.messasge);    
                 setTasks([])
             }
         }
@@ -104,7 +116,7 @@ export default function Tasks () {
                 })
             })
         } catch (error) {
-            console.error("Error guardando tarea:", error);
+            console.log("Error guardando tarea:", error);
         }
 
     }
@@ -136,7 +148,7 @@ export default function Tasks () {
                             </div>
                             <button onClick={() => {
                                 setFieldId(fieldId + 1)
-                                setTasks([...tasks, {id: fieldId, title: inputCreateTask, description: inputCreateDescriptionTask, deadline: inputCreateDeadLineTask, priority: priorityStateButton !== '' ? priorityStateButton : 'low'}])
+                                setTasks([...tasks, {id: fieldId, title: inputCreateTask || 'NA', description: inputCreateDescriptionTask || 'NA', deadline: inputCreateDeadLineTask || date, priority: priorityStateButton !== '' ? priorityStateButton : 'low'}])
                                 setInputCreateTask('')
                                 setInputCreateDescriptionTask('')
                                 setInputCreateDeadLineTask('')
@@ -188,6 +200,7 @@ export default function Tasks () {
                     {/* ---------------------------- Tasks -------------------------------*/}
                     {editingTask && <Task_edit task={editingTask} onClose={() => setEditingTask(null)} onSave={handleUpdateTask} />}
                     <Task tasks={tasks} inputSearchTask={inputSearchTask} selectPriority={selectPriority} selectDeadLine={selectDeadLine} onSelectTask={setEditingTask}/>
+                    {expiredToken && <Modal />}
                 </div>
             </div>
         </>
