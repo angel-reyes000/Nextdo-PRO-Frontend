@@ -1,0 +1,60 @@
+.window_dialog {
+    margin: auto;
+}
+
+.modal_target {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    grid-template-rows: auto auto auto auto;
+    gap: 2%;
+    height: auto;
+    max-height: 50%;
+    width: 30%;
+    padding: 2%;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin: auto;
+    transform: translateY(-700);
+    animation-name: modal_target_move;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0ms;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    h1 {
+        font-size: 150%;
+        font-weight: 600;
+        color: red;
+    }
+    button {
+        font-size: 120%;
+        font-weight: 500;
+        padding: 2%;
+        min-width: 40%;
+        border-radius: 10px;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+        color: rgb(0, 0, 190);
+        cursor: pointer;
+        outline: none;
+    }
+    button:hover {
+        background-color: rgb(201, 201, 201);
+    }
+}
+
+@keyframes modal_target_move {
+    from {
+        transform: translateY(-700);
+    } to {
+        transform: translateY(0);
+    }
+}
+
+.modal_buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 100%;
+}

@@ -9,7 +9,7 @@ function OpenThreeDots ({ id }) {
     const [optionDelete, setOptionDelete] = useState(false);
     const router = useRouter()
 
-    const deleteTaskDataBase = async () => {
+    const deleteTaskDataBase = async (e) => {
         const db = await fetch(`${process.env.NEXT_PUBLIC_RUTE}`, {
             method: "DELETE",
             headers: {
@@ -29,11 +29,11 @@ function OpenThreeDots ({ id }) {
                 setOptionDelete(!optionDelete)
             }}>...</h2>
             {optionDelete ?  <h6 onClick={(e) => {
-                location.reload()
-                router.refresh()
                 setOptionDelete(!optionDelete)
                 e.stopPropagation()
                 deleteTaskDataBase()
+                router.refresh()
+                location.reload()
             }}>Delete</h6> : null}
         </div>
     )

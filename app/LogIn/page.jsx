@@ -8,7 +8,7 @@ import image_google from '../../public/assets/Sign_in_images/Icono google sin fo
 import image_apple from '../../public/assets/Sign_in_images/Icono apple sin fondo.png';
 import Image from 'next/image'
 
-export default function SignUp () {
+export default function Login () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter()

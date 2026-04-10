@@ -5,6 +5,7 @@ const jsonwebtoken = require('jsonwebtoken');
 const readNote = async (req, res) => {
     try {
         const consulta = "SELECT * FROM note WHERE user_id = $1";
+
         const resultado = await pool.query(consulta, [req.user.id])
         res.json({
             "response": resultado.rows
@@ -20,7 +21,7 @@ const createNote = async (req, res) => {
     try {
         let {title, description, deadline, priority} = req.body;
 
-        let today_date = new Date().toLocaleDateString()
+        today_date = new Date().toLocaleDateString()
 
             if (!title) {
                 title = "NA"
@@ -194,10 +195,10 @@ const postLogIn = async (req, res) => {
     const token = jsonwebtoken.sign(
         { id: user.id },
         process.env.SECRET,
-        { expiresIn: "1h"}
+        { expiresIn: "1m"}
     );
 
-    return res.status(200).json({
+    res.status(200).json({
         message: "Correct Login",
         userID: user.id,
         token: token
@@ -215,7 +216,6 @@ const auth = async (req, res, next) => {
         const decoded = jsonwebtoken.verify(token, process.env.SECRET);
 
         req.user = decoded;
-
         next()
 
     } catch (error) {
