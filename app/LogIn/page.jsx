@@ -6,6 +6,7 @@ import styles from '../styles/logIn.module.scss';
 import cover from '../../public/assets/Sign_in_images/Diseño_portada_login_signup_nextdo_pro_gemini-removebg-preview.png';
 import image_google from '../../public/assets/Sign_in_images/Icono google sin fondo.png';
 import image_apple from '../../public/assets/Sign_in_images/Icono apple sin fondo.png';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import Image from 'next/image'
 import AOS from "aos";
 import 'aos/dist/aos.css';
@@ -48,6 +49,24 @@ export default function Login () {
         }
     }
 
+    const submitGoogle = async (credentialResponse) => {
+        const res = await fetch('http://localhost:4000/auth/google', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem('token')
+            },
+            body: JSON.stringify({
+                token: credentialResponse.credential
+            })
+        })
+
+        const data = await res.json()
+
+        localStorage.setItem('token', data.token)
+        router.push('/Tasks')
+    }
+
     return (
         <>
             <div data-aos="zoom-in" className={styles.window_log_in}>
@@ -85,10 +104,9 @@ export default function Login () {
                                 </div>
                                 <div className={styles.google_apple_images}>
                                     <div className={styles.container_image_google}>
-                                        <Image src={image_google} width={70} height={70} alt='Imagen de inicio de sesion con google' />
-                                    </div>
-                                    <div className={styles.container_image_apple}>
-                                        <Image src={image_apple} width={70} height={70} alt='Imagen de inicio de sesion con apple' />
+                                        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT}>
+                                            <GoogleLogin onSuccess={submitGoogle} onError={() => console.log("Error de validacion")}/>
+                                        </GoogleOAuthProvider>
                                     </div>
                                 </div>
                             </form>
