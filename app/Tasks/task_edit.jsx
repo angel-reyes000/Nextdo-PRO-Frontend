@@ -48,7 +48,7 @@ export default function Task_edit({ task, onClose, onSave }) {
                     </div>
                     <button onClick={onClose}><FaTimes size={30}/></button>
                 </div>
-                <hr style={{backgroundColor: 'black', border: '2px solid black', width: '100%'}}/>
+                <hr />
                 <div className={styles.edit_description}>
                     <h2>Description:</h2>
                     <textarea value={editDescription} onChange={(e) => setEditDescription(e.target.value)} placeholder='Edit your description...'></textarea>

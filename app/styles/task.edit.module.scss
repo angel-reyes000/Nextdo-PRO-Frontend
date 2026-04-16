@@ -13,17 +13,21 @@
     grid-template-rows: auto auto 2fr 1fr 1fr;
     margin-top: 2%;
     height: 70dvh;
-    width: 50dvw;
+    width: auto;
     background-color: white;
     position: fixed;
     padding: 2%;
     border-radius: 20px;
+    hr {
+        background-color: black;
+        border: 2px solid black;
+        width: 100%;
+    }
 }
 
 .edit_header {
     display: flex;
     justify-content: space-between;
-    width: 46dvw;
     height: 6dvh;
     margin-bottom: 1%;
     button {
@@ -45,6 +49,7 @@
         background-color: rgba(226, 226, 226, 1);
         border-radius: 10px;
         padding-left: 2%;
+        width: 100%;
     }
 }
 
@@ -71,8 +76,9 @@
     font-size: 130%;
     gap: 10%;
     label {
-        width: 100dvw;
-        margin-right: 100%;
+        display: block;
+        width: 10dvw;
+        margin-right: 0%;
         font-weight: 600;
     }
 
@@ -96,16 +102,18 @@
     align-items: end;
     color: white;
     font-size: 120%;
-    width: 46dvw;
     font-weight: 600;
 }
 
 .edit_button_close {
     text-align: center;
     background-color: red;
-    width: 10dvw;
-    height: 4dvh;
+    padding: 0% 5% 0% 5%;
     border-radius: 5px;
+    cursor: pointer;
+    button {
+        cursor: pointer;
+    }
 }
 
 .edit_button_save {
@@ -113,9 +121,27 @@
     justify-content: center;
     align-items: center;
     background-color: rgb(84, 90, 255);
-    width: 10dvw;
-    height: 4dvh;
+    padding: 0% 5% 0% 5%;
     border-radius: 5px;
     margin-left: 2%;
+    cursor: pointer;
+    button {
+        cursor: pointer;
+    }
 }
 
+@media screen and (max-width: 800px) {
+    .card_edit {
+        margin-top: 5%;
+        width: 90dvw;
+        height: 85dvh;
+        max-width: 90dvw;
+        overflow-x: auto;
+    }
+    .edit_header {
+        input {
+        }
+    }
+    .edit_title {
+    }
+}
