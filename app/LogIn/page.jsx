@@ -43,7 +43,7 @@ export default function Login () {
 
         if (res.status == 200 && data.token) {
             localStorage.setItem('token', data.token)
-            router.push('/Tasks')
+            router.push('/tasks')
         }else{
             alert('Error: ' + data.Error)
         }
@@ -64,7 +64,7 @@ export default function Login () {
         const data = await res.json()
 
         localStorage.setItem('token', data.token)
-        router.push('/Tasks')
+        router.push('/tasks')
     }
 
     return (
@@ -75,7 +75,7 @@ export default function Login () {
                         <div className={styles.seccion_log_in_log_in} >
                             <h2>Log in</h2>
                         </div>
-                        <div className={styles.seccion_log_in_sign_up} onClick={() => router.push('/SignUp')}>
+                        <div className={styles.seccion_log_in_sign_up} onClick={() => router.push('/signup')}>
                             <h2>Sign up</h2>
                         </div>
                     </div>

@@ -23,11 +23,11 @@ export default function Modal () {
                     <p>We're sorry, your session has ended. Please log in again or create an account to continue.</p>
                     <div className={styles.modal_buttons}>
                         <button onClick={() => {
-                            router.push('/LogIn')
+                            router.push('/login')
                             refDialog.current.close()
                         }}>Log in</button>
                         <button onClick={() => {
-                            router.push('/SignUp')
+                            router.push('/signup')
                             refDialog.current.close()
                         }}>Create account</button>
                     </div>

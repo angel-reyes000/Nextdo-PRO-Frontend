@@ -6,7 +6,7 @@ import styles from '../styles/signUp.module.scss';
 import cover from '../../public/assets/Sign_in_images/Diseño_portada_login_signup_nextdo_pro_gemini-removebg-preview.png';
 import image_google from '../../public/assets/Sign_in_images/Icono google sin fondo.png';
 import image_apple from '../../public/assets/Sign_in_images/Icono apple sin fondo.png';
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google'; 
+import { Googlelogin, GoogleOAuthProvider } from '@react-oauth/google'; 
 import Image from 'next/image';
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -50,7 +50,7 @@ export default function SignUp () {
             setErrorSignUp(true)
             setMessageError('Campos invalidos o faltantes')
         } else if (res.status == 200 || res.status == 201) {
-            router.push('/LogIn')
+            router.push('/login')
         }
     }
 
@@ -73,7 +73,7 @@ export default function SignUp () {
         const data = await res.json();
 
         localStorage.setItem('token', data.token);
-        router.push('/LogIn');
+        router.push('/');
     }
  
     return (
@@ -81,7 +81,7 @@ export default function SignUp () {
             <div data-aos="zoom-in" className={styles.window_sign_up}>
                 <div className={styles.container_sign_up}>
                     <div className={styles.seccions_sign_up}>
-                        <div className={styles.seccion_sign_up_log_in} onClick={() => router.push('/LogIn')}>
+                        <div className={styles.seccion_sign_up_log_in} onClick={() => router.push('/login')}>
                             <h2>Log in</h2>
                         </div>
                         <div className={styles.seccion_sign_up_sign_up} >
@@ -125,7 +125,7 @@ export default function SignUp () {
                                 <div className={styles.google_apple_images}>
                                     <div className={styles.container_image_google}>
                                         <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT}>
-                                            <GoogleLogin onSuccess={submitGoogle} onError={() => console.log("Error en inicio con google")}/>
+                                            <Googlelogin onSuccess={submitGoogle} onError={() => console.log("Error en inicio con google")}/>
                                         </GoogleOAuthProvider>
                                     </div>
                                 </div>

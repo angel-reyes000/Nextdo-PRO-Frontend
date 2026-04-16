@@ -62,7 +62,7 @@ export default function NavBar(){
                         <p>NextDo PRO, Welcome!<span className={styles.stick_move}>|</span></p>
                     </div>                    
                 </div>
-                {pathName !== '/LogIn' && pathName !== '/SignUp' && pathName !== '/' ? (
+                {pathName !== '/login' && pathName !== '/signup' && pathName !== '/' ? (
                     <div onClick={() => {
                         setOpenLogout(true)
                         
