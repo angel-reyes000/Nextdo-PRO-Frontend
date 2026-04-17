@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -11,13 +11,12 @@ export default function Modal () {
     const refDialog = useRef(null);
     const router = useRouter();
 
-    useEffect(() => {
-        refDialog.current.showModal();
-    }, []);
-
-    return (
-        <div className={styles.window_dialog}>
-            <dialog className={styles.modal_target} ref={refDialog}>
+    const token = localStorage.getItem('token')
+    if (token === undefined || token === null) {
+        useEffect(() => refDialog.current.showModal(), [])
+        return (
+            <div className={styles.window_dialog}>
+                <dialog className={styles.modal_target} ref={refDialog}>
                     <Image src={image_expired_token} width={150} height={150} alt='Image expired token'></Image>
                     <h1>Session expired!</h1>
                     <p>We're sorry, your session has ended. Please log in again or create an account to continue.</p>
@@ -31,7 +30,8 @@ export default function Modal () {
                             refDialog.current.close()
                         }}>Create account</button>
                     </div>
-            </dialog>
-        </div>
-    )
+                </dialog>
+            </div>
+        )
+    }
 }

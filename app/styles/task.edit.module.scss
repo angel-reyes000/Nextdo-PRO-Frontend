@@ -32,8 +32,12 @@
     height: 6dvh;
     margin-bottom: 1%;
     button {
-        height: auto; //LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+        height: auto;
         cursor: pointer;
+    }
+
+    button:hover {
+        background-color: white;
     }
 }
 

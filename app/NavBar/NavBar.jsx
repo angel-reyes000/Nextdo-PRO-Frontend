@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Logo from '../../public/assets/NavBar_images/logo nextdo pro navbar.png'
 import lupa from '../../public/assets/NavBar_images/search navbar nextdo pro.png'
 import image_log_out from '../../public/assets/NavBar_images/logout_nextdopro.png';
+import image_login_signup from '../../public/assets/Sign_in_images/imagen _login_signup.png'
 import { FaSearch } from 'react-icons/fa'
 import { useRouter, usePathname } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
@@ -63,14 +64,11 @@ export default function NavBar(){
                     </div>                    
                 </div>
                 {pathName !== '/login' && pathName !== '/signup' && pathName !== '/' ? (
-                    <div onClick={() => {
-                        setOpenLogout(true)
-                        
-                        }} className={styles.log_out_navbar}>
+                    <div onClick={() => {setOpenLogout(true)}} className={styles.log_out_navbar}>                         
                         <div className={styles.log_out_container}>
                             <Image src={image_log_out} width={50} height={50} alt='image log out' />
-                            <p>Log out</p> 
-                        </div>                    
+                            <p>Log out</p>
+                        </div>            
                     </div>) : ''}
                     {openLogout && <Log_out />}
             </div>

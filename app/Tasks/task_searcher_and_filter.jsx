@@ -41,12 +41,24 @@ function OpenThreeDots ({ id }) {
 
 export default function Task ({ tasks, inputSearchTask, selectPriority, selectDeadLine, onSelectTask }) {
 
+    function Warning () {
+        const token = localStorage.getItem('token');
+        if (token === undefined  || token === null) {
+            return (
+                <div className={styles.warning_login}>
+                    <p>Log in for save your tasks!</p>
+                </div>
+            )
+        }
+    }
+
     if (tasks.length === 0) {
         return (
             <>
                 <div className={styles.empty_tasks}>
                     <FaPlus style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}/><h1> Create a task!</h1>
                 </div>
+                <Warning />
             </>
         )
     }

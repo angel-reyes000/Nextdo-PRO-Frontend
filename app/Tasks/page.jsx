@@ -201,7 +201,7 @@ export default function Tasks () {
                     {/* ---------------------------- Tasks -------------------------------*/}
                     {editingTask && <Task_edit task={editingTask} onClose={() => setEditingTask(null)} onSave={handleUpdateTask} />}
                     <Task tasks={tasks} inputSearchTask={inputSearchTask} selectPriority={selectPriority} selectDeadLine={selectDeadLine} onSelectTask={setEditingTask}/>
-                    {expiredToken && <Modal />}
+                    <Modal />
                 </div>
             </div>
         </>

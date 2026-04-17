@@ -114,8 +114,18 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    gap: 2%;
+    gap: 20%;
     margin-right: 5%;
+}
+
+.login_signup_navbar {
+    display: block;
+    justify-items: center;
+    align-content: center;
+    font-size: clamp(0.8rem, 1rem, 1.2rem);
+    font-weight: 500;
+    cursor: pointer;
+    display: none;
 }
 
 .log_out_container {
@@ -191,6 +201,15 @@
         }
     }
     .log_out_container {
+        img {
+            width: 30px;
+        }
+        p {
+            display: none;
+        }
+    }
+    .login_signup_navbar {
+        display: block;
         img {
             width: 30px;
         }

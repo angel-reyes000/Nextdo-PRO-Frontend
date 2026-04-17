@@ -5,7 +5,6 @@ import { useRouter, usePathname } from 'next/navigation';
 import styles from '../styles/logIn.module.scss';
 import cover from '../../public/assets/Sign_in_images/Diseño_portada_login_signup_nextdo_pro_gemini-removebg-preview.png';
 import image_google from '../../public/assets/Sign_in_images/Icono google sin fondo.png';
-import image_apple from '../../public/assets/Sign_in_images/Icono apple sin fondo.png';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import Image from 'next/image'
 import AOS from "aos";
