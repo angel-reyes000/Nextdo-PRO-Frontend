@@ -102,22 +102,20 @@ export default function Tasks () {
 
     async function sendTaskDataBase () {
         try {
-            useEffect(async () => {
-                    const res = await fetch(`${process.env.NEXT_PUBLIC_RUTE_BACKEND}/api/notes`, {
-                    method: "POST",
-                    headers: {
-                        'Authorization': localStorage.getItem('token'),
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id: fieldId,
-                        title: inputCreateTask,
-                        description: inputCreateDescriptionTask,
-                        deadline: inputCreateDeadLineTask,
-                        priority: priorityStateButton
-                    })
-                })
+            const res = await fetch(`${process.env.NEXT_PUBLIC_RUTE_BACKEND}/api/notes`, {
+            method: "POST",
+            headers: {
+                'Authorization': typeof window !== 'undefined' ? localStorage.getItem('token') : null,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: fieldId,
+                title: inputCreateTask,
+                description: inputCreateDescriptionTask,
+                deadline: inputCreateDeadLineTask,
+                priority: priorityStateButton
             })
+        })
         } catch (error) {
             console.log("Error guardando tarea:", error);
         }
