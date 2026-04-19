@@ -303,9 +303,9 @@
     padding: 1%;
     margin-bottom: 1%;
     cursor: pointer;
-    transform: translateX(-1200);
+    transform: translateX(-1500);
     animation-name: move_tasks;
-    animation-duration: 1s;
+    animation-duration: 2s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
@@ -313,7 +313,7 @@
 
 @keyframes move_tasks {
     from{
-        transform: translateX(-1200);
+        transform: translateX(-1500);
     } to {
         transform: translateX(0);
     }
