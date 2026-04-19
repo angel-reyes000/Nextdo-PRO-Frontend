@@ -9,6 +9,9 @@ import image_login_signup from '../../public/assets/Sign_in_images/imagen _login
 import { FaSearch } from 'react-icons/fa'
 import { useRouter, usePathname } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+import { once } from 'events'
 
 export default function NavBar(){
     const router = useRouter();
@@ -21,11 +24,16 @@ export default function NavBar(){
     
         useEffect(() => {
             logoutRef.current.showModal()
+            AOS.init({
+                duration: 1000,
+                delay: 0,
+                once: true
+            })
         }, []);
 
         return (
             <>
-                <dialog ref={logoutRef} className={styles.modal_card_log_out}>
+                <dialog data-aos="zoom-in"  ref={logoutRef} className={styles.modal_card_log_out}>
                     <div className={styles.modal_log_out}>
                         <div className={styles.modal_text_log_out}>
                             <p>Are you sure you want to log out?</p>
