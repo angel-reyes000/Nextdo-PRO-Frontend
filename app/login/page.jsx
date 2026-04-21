@@ -14,6 +14,7 @@ export default function Login () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
+    const [incorrectData, setIncorrectData] = useState(false);
     const pathName = usePathname();
 
     useEffect(() => {
@@ -44,7 +45,17 @@ export default function Login () {
             localStorage.setItem('token', data.token)
             router.push('/tasks')
         }else{
-            alert('Error: ' + data.Error)
+            setIncorrectData(true);
+        }
+    }
+
+    function ErrorLogin () {
+        if (incorrectData) {
+            return (
+                <>
+                    <p style={{fontSize: '100%', color: 'red', display: 'inline'}}>Email or password incorrect!</p>
+                </>
+            )
         }
     }
 
@@ -94,6 +105,7 @@ export default function Login () {
                                         <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' name="password" id="password" type="password"/>                                        
                                     </div>                                    
                                 </div>
+                                <ErrorLogin />
                                 <div className={styles.button_log_in}>
                                     <button type="submit">Log in</button>                                    
                                 </div>
