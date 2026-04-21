@@ -174,7 +174,6 @@ export default function Tasks () {
                                 setInputCreateDescriptionTask('')
                                 setInputCreateDeadLineTask('')
                                 setPriorityStateButton('')
-                                sendTaskDataBase()
                                 refHigh.style.backgroundColor = 'rgb(255, 132, 132)'
                                 refHigh.style.outline = '0px'
                                 refMedium.style.backgroundColor = 'rgb(253, 255, 136)'
