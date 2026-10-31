@@ -23,7 +23,7 @@ function OpenThreeDots ({ id, onDeleteTask }) {
 
     return (
         <div className={styles.three_dots_tasks} style={{backgroundColor: optionDelete ? 'rgb(232, 230, 230)' : ''}}>
-            <h2 onClick={(e) => {
+            <h2 role='button' aria-label='Task options' onClick={(e) => {
                 e.stopPropagation()
                 setOptionDelete(!optionDelete)
             }}>...</h2>
@@ -70,7 +70,7 @@ function TaskCheckbox ({ task, onToggleTask }) {
     }
 
     return (
-        <input type="checkbox" checked={checked} onChange={handleChange} onClick={(e) => e.stopPropagation()}></input>
+        <input type="checkbox" checked={checked} onChange={handleChange} onClick={(e) => e.stopPropagation()} aria-label={`Mark "${task.title}" as completed`}></input>
     )
 }
 
@@ -108,7 +108,12 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
         )
     }
 
-    const priorityColor = (priority) => priority === 'high' ? 'red' : priority === 'medium' ? 'yellow' : 'green'
+    const priorityColor = (priority) => priority === 'high' ? 'var(--priority-high)' : priority === 'medium' ? 'var(--priority-medium)' : 'var(--priority-low)'
+    const priorityBadge = (priority) => priority === 'high'
+        ? { backgroundColor: 'var(--priority-high-soft)', color: 'var(--priority-high-text)' }
+        : priority === 'medium'
+            ? { backgroundColor: 'var(--priority-medium-soft)', color: 'var(--priority-medium-text)' }
+            : { backgroundColor: 'var(--priority-low-soft)', color: 'var(--priority-low-text)' }
 
     const visibleTasks = tasks
         .filter(task => inputSearchTask === '' || task.title.toLowerCase().includes(inputSearchTask.toLowerCase()))
@@ -120,20 +125,20 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
     return (
         <>
             {visibleTasks.map((task) => (
-                <div key={task.id} onClick={() => onSelectTask(task)} className={styles.tasks} style={{borderLeft: `7px solid ${priorityColor(task.priority)}`}}>
+                <div key={task.id} onClick={() => onSelectTask(task)} className={styles.tasks} style={{borderLeft: `4px solid ${priorityColor(task.priority)}`}}>
                     <div className={styles.tasks_checkbox}>
                         <TaskCheckbox task={task} onToggleTask={onToggleTask}/>
                     </div>
                     <div className={styles.information_tasks}>
                         <div className={styles.header_tasks}>
-                            <p style={{backgroundColor: `${priorityColor(task.priority)}`}}>{task.priority ? task.priority : 'Low'}</p>
+                            <p style={priorityBadge(task.priority)}>{task.priority ? task.priority : 'Low'}</p>
                             <h2>{task.title}</h2>
                         </div>
                         <div className={styles.description_tasks}>
                             <p>{task.description}</p>
                         </div>
                         <div className={styles.date_tasks}>
-                            <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
+                            <p><FaCalendar aria-hidden='true' style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                         </div>
                     </div>
                     <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
