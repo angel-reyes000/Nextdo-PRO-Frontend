@@ -1,132 +1,156 @@
 .main_window {
+    position: relative;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 48px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 72px 32px;
+    flex: 1;
     overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -20% -10% auto auto;
+        width: 640px;
+        height: 640px;
+        background: radial-gradient(circle, rgba(37, 99, 235, 0.12), rgba(37, 99, 235, 0) 65%);
+        pointer-events: none;
+        z-index: -1;
+    }
 }
 
 .text_and_button_main_window {
-    display: inline-block;
-    align-content: center;
-    justify-items: end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
     opacity: 0;
-    transform: translateX(-1000);
-    animation-name: move_main_text;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    animation-delay: 0ms;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    margin-left: 15%;
-    h1{
-        margin-top: 10%;
-        font-size: 450%;
-        font-weight: 700;
-    }
-    p {
-        font-size: 155%;
-    }
+    animation: move_main_text 0.6s var(--ease) forwards;
+
     button {
-        color: white;
-        background-color: rgb(0, 0, 300);
-        font-size: 140%;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        height: 52px;
+        padding: 0 28px;
+        color: var(--color-on-primary);
+        background-color: var(--color-primary);
+        font-size: 1rem;
         font-weight: 700;
-        margin: 5% 0% 5% 0%;
-        padding: 1% 2% 1% 2%;
-        border-radius: 10px;
-        box-sizing: border-box;
-        animation-name: move_main_button;
-        animation-duration: 1s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-    }
-    button:hover {
-        background-color: rgb(0, 0, 200);
-        outline: 1px solid black;
+        border-radius: var(--radius-md);
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.3);
         cursor: pointer;
+        transition: background-color 0.2s var(--ease), transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+    }
+
+    button:hover {
+        background-color: var(--color-primary-hover);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(37, 99, 235, 0.35);
+    }
+
+    button:active {
+        transform: translateY(0) scale(0.98);
     }
 }
 
 @keyframes move_main_text {
     from {
-        transform: translateX(-1000);
+        transform: translateY(16px);
         opacity: 0;
     } to {
         opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes move_main_button {
-    from {
-        transform: scale(1);
-    } to {
-        transform: scale(1.1);
+        transform: translateY(0);
     }
 }
 
 .text_main_window {
-    margin-left: 0%;
+    h1 {
+        font-size: clamp(2.5rem, 5.2vw, 4.25rem);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.035em;
+        color: var(--color-foreground);
+        margin-bottom: 20px;
+
+        span {
+            color: var(--color-primary);
+        }
+    }
+
+    p {
+        max-width: 34ch;
+        font-size: 1.125rem;
+        line-height: 1.65;
+        color: var(--color-muted-foreground);
+    }
 }
 
 .image_main_window {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 8%;
-    margin-right: 10%;
     opacity: 0;
-    transform: translateX(700);
-    animation-name: move_main_image;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    animation-delay: 0ms;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
+    animation: move_main_image 0.8s var(--ease) 0.15s forwards;
+
+    img {
+        width: 100%;
+        max-width: 480px;
+        height: auto;
+        filter: drop-shadow(0 24px 40px rgba(15, 23, 42, 0.12));
+    }
 }
 
 @keyframes move_main_image {
     from {
         opacity: 0;
-        transform: translateX(700);
+        transform: translateY(24px) scale(0.98);
     } to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0) scale(1);
     }
 }
 
 @media screen and (max-width: 800px) {
     .main_window {
-        display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: auto auto;
+        grid-template-columns: 1fr;
         justify-items: center;
         text-align: center;
-        margin-left: 0%;
+        gap: 24px;
+        padding: 40px 16px 56px;
+
+        &::before {
+            inset: -10% -40% auto auto;
+            width: 420px;
+            height: 420px;
+        }
     }
 
     .text_and_button_main_window {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-left: 0%;
-        h1 {
-            font-size: 200%;
-        }
-        p {
-            font-size: 120%;
-        }
+        align-items: center;
+        gap: 28px;
+
         button {
-            font-size: 100%;
-            margin: 10% 0% 0% 0%;
+            width: 100%;
+            max-width: 320px;
+            justify-content: center;
         }
-        button:hover {
-            outline: 3px solid black;
+    }
+
+    .text_main_window {
+        p {
+            margin: 0 auto;
+            font-size: 1rem;
         }
     }
 
     .image_main_window {
-        width: 80%;
-        margin-left: 10%;
+        img {
+            max-width: 300px;
+        }
     }
 }

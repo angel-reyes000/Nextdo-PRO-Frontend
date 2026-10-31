@@ -1,12 +1,18 @@
 .NavBar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
     display: grid;
-    background-color: white;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 24px;
     width: 100%;
-    grid-template-columns: auto 2fr 1fr;
-    animation-name: show_navbar;
-    animation-duration: 3s;
-    animation-timing-function: ease;
-    animation-delay: 0ms;
+    min-height: 72px;
+    padding: 0 32px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--color-border);
+    animation: show_navbar 0.4s var(--ease);
 }
 
 @keyframes show_navbar {
@@ -19,63 +25,74 @@
 
 .logo_titulo_navbar {
     display: flex;
-    cursor: pointer;
     align-items: center;
-    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    padding: 4px 8px 4px 0;
+    transition: opacity 0.2s var(--ease);
+
+    img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+    }
+
     .titulo_navbar {
-        width: 50%;
-        font-size: 120%;
+        font-size: 1.125rem;
         font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--color-foreground);
+        white-space: nowrap;
+    }
+
+    &:hover {
+        opacity: 0.8;
     }
 }
 
 .search_navbar {
     display: flex;
-    justify-content: left;
     align-items: center;
+    justify-self: center;
+    width: 100%;
+    max-width: 520px;
+    height: 44px;
+    padding: 0 16px;
+    gap: 10px;
+    background-color: var(--color-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
 
     .fasearch_bg {
-        background-color: rgb(226, 226, 226);
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 45%;
-        width: 5%;
-        margin-top: 2%;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
+        color: var(--color-muted-foreground);
     }
 
     .fasearch {
-        opacity: 50%;
+        width: 14px;
+        height: 14px;
     }
 }
 
 .write_search {
     display: flex;
     align-items: center;
-    margin: 2% 0% 0% 0%;
-    height: 45%;
-    width: 70%;
+    min-width: 0;
+    flex: 1;
     font-weight: 500;
-    font-size: 110%; 
-    background-color: rgb(226, 226, 226);
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    
-    p{
-        animation-name: search_animation;
-        animation-duration: 4s;
-        animation-timing-function: linear;
-        animation-delay: 0ms;
-        animation-iteration-count: infinite;
+    font-size: 0.95rem;
+
+    p {
+        animation: search_animation 4s linear infinite;
         overflow: hidden;
         white-space: nowrap;
-        color: rgb(111, 111, 111);
-        display: inline;
-        max-width: 70%;
+        color: var(--color-muted-foreground);
+        display: inline-block;
+        max-width: 100%;
     }
-   
 }
 
 @keyframes search_animation {
@@ -88,25 +105,16 @@
 
 .stick_move {
     display: inline;
-    animation-name: stick_animation;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-delay: 0ms;
-    animation-iteration-count: infinite;
+    color: var(--color-primary);
+    animation: stick_animation 1s steps(1) infinite;
 }
 
 @keyframes stick_animation {
     0% {
-        opacity: 0;
-    } 
+        opacity: 1;
+    }
     50% {
         opacity: 0;
-    }
-    51%{
-        opacity: 1;
-    }
-    100% {
-        opacity: 1;
     }
 }
 
@@ -114,27 +122,38 @@
     display: flex;
     justify-content: end;
     align-items: center;
-    gap: 20%;
-    margin-right: 5%;
 }
 
 .login_signup_navbar {
-    display: block;
-    justify-items: center;
-    align-content: center;
-    font-size: clamp(0.8rem, 1rem, 1.2rem);
-    font-weight: 500;
-    cursor: pointer;
     display: none;
 }
 
 .log_out_container {
-    display: block;
-    justify-items: center;
-    align-content: center;
-    font-size: clamp(0.8rem, 1rem, 1.2rem);
-    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 16px 0 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
     cursor: pointer;
+    transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
+
+    img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+    }
+
+    &:hover {
+        background-color: var(--color-destructive-soft);
+        border-color: #fecaca;
+        color: var(--color-destructive);
+    }
 }
 
 .modal_card_log_out {
@@ -142,9 +161,9 @@
     width: min(400px, calc(100vw - 32px));
     padding: 0;
     border: none;
-    border-radius: 20px;
-    background-color: white;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    border-radius: var(--radius-xl);
+    background-color: var(--color-card);
+    box-shadow: var(--shadow-lg);
     overflow: hidden;
 
     &[open] {
@@ -204,7 +223,7 @@
     h3 {
         font-size: 1.35rem;
         font-weight: 700;
-        color: rgb(17, 24, 39);
+        color: var(--color-foreground);
         margin-bottom: 6px;
     }
 
@@ -218,7 +237,7 @@
         display: block;
         margin-top: 4px;
         font-size: 0.875rem;
-        color: rgb(107, 114, 128);
+        color: var(--color-muted-foreground);
     }
 }
 
@@ -270,47 +289,35 @@
 
 @media screen and (max-width: 800px) {
     .NavBar {
-        grid-template-columns: 1fr 3fr 1fr;
-        gap: 10%;
+        grid-template-columns: auto 1fr auto;
+        gap: 12px;
+        min-height: 64px;
+        padding: 0 16px;
     }
-    .logo_titulo_navbar{
-        margin-left: 10%;
-        .titulo_navbar{
-            font-size: 70%;
+    .logo_titulo_navbar {
+        img {
+            width: 34px;
+            height: 34px;
+        }
+        .titulo_navbar {
+            display: none;
         }
     }
-    .search_navbar{
-        width: 100%;
-        .fasearch {
-            font-size: 0%;
-            width: 100%;
-        }
+    .search_navbar {
+        height: 40px;
+        padding: 0 12px;
     }
     .write_search {
-        width: 100%;
-        p {
-            width: 100%;
-            max-width: 100%;
-        }
+        font-size: 0.85rem;
     }
     .log_out_container {
-        img {
-            width: 30px;
-        }
+        width: 44px;
+        padding: 0;
+        justify-content: center;
         p {
             display: none;
         }
     }
-    .login_signup_navbar {
-        display: block;
-        img {
-            width: 30px;
-        }
-        p {
-            display: none;
-        }
-    }
-
     .modal_log_out {
         padding: 28px 20px 20px;
     }

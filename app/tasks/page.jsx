@@ -51,33 +51,33 @@ export default function Tasks () {
     let refLow = refPriorityLow.current
     useEffect(() => {
         if (priorityStateButton === 'high') {
-            refHigh.style.backgroundColor = 'red';
-            refHigh.style.outline = '3px solid black'
+            refHigh.style.backgroundColor = '#fca5a5';
+            refHigh.style.outline = '2px solid #0f172a'
 
-            refMedium.style.backgroundColor = 'rgb(253, 255, 136)'
+            refMedium.style.backgroundColor = '#fef3c7'
             refMedium.style.outline = '0px'
 
-            refLow.style.backgroundColor = 'rgb(189, 255, 193)'
+            refLow.style.backgroundColor = '#dcfce7'
             refLow.style.outline = '0px'
 
         } else if (priorityStateButton === 'medium') {
-            refMedium.style.backgroundColor = 'yellow';
-            refMedium.style.outline = '3px solid black'
+            refMedium.style.backgroundColor = '#fcd34d';
+            refMedium.style.outline = '2px solid #0f172a'
 
-            refHigh.style.backgroundColor = 'rgb(255, 132, 132)'
+            refHigh.style.backgroundColor = '#fee2e2'
             refHigh.style.outline = '0px'
 
-            refLow.style.backgroundColor = 'rgb(189, 255, 193)'
+            refLow.style.backgroundColor = '#dcfce7'
             refLow.style.outline = '0px'
 
         } else if (priorityStateButton === 'low') {
-            refLow.style.backgroundColor = 'green';
-            refLow.style.outline = '3px solid black'
+            refLow.style.backgroundColor = '#86efac';
+            refLow.style.outline = '2px solid #0f172a'
 
-            refHigh.style.backgroundColor = 'rgb(255, 132, 132)'
+            refHigh.style.backgroundColor = '#fee2e2'
             refHigh.style.outline = '0px'
 
-            refMedium.style.backgroundColor = 'rgb(253, 255, 136)'
+            refMedium.style.backgroundColor = '#fef3c7'
             refMedium.style.outline = '0px'
         }
         console.log("Cambio de prioridad")
@@ -157,14 +157,14 @@ export default function Tasks () {
                             </div>
                             <div className={styles.create_task_row_1_buttons}>
                                 <p>Priority:</p>
-                                <button ref={refPriorityHigh} onClick={() => setPriorityStateButton('high')} style={{backgroundColor: 'rgb(255, 132, 132)'}}>High</button>
-                                <button ref={refPriorityMedium} onClick={() => setPriorityStateButton('medium')} style={{backgroundColor: 'rgb(253, 255, 136)'}}>Medium</button>
-                                <button ref={refPriorityLow} onClick={() => setPriorityStateButton('low')} style={{backgroundColor: 'rgb(189, 255, 193)'}}>Low</button>
+                                <button ref={refPriorityHigh} onClick={() => setPriorityStateButton('high')} style={{backgroundColor: '#fee2e2'}}>High</button>
+                                <button ref={refPriorityMedium} onClick={() => setPriorityStateButton('medium')} style={{backgroundColor: '#fef3c7'}}>Medium</button>
+                                <button ref={refPriorityLow} onClick={() => setPriorityStateButton('low')} style={{backgroundColor: '#dcfce7'}}>Low</button>
                             </div>
                         </div>
                         <div className={styles.create_task_row_2}>
                             <div className={styles.input_new_task}>
-                                <input value={inputCreateTask} onChange={(e) => setInputCreateTask(e.target.value)} placeholder='Input new task'></input>
+                                <input value={inputCreateTask} onChange={(e) => setInputCreateTask(e.target.value)} placeholder='Input new task' aria-label='New task title'></input>
                             </div>
                             <div className={styles.label_input_deadline}>
                                 <label htmlFor='deadline'>Deadline: </label>
@@ -178,14 +178,14 @@ export default function Tasks () {
                                 setInputCreateDescriptionTask('')
                                 setInputCreateDeadLineTask('')
                                 setPriorityStateButton('')
-                                refHigh.style.backgroundColor = 'rgb(255, 132, 132)'
+                                refHigh.style.backgroundColor = '#fee2e2'
                                 refHigh.style.outline = '0px'
-                                refMedium.style.backgroundColor = 'rgb(253, 255, 136)'
+                                refMedium.style.backgroundColor = '#fef3c7'
                                 refMedium.style.outline = '0px'
-                                refLow.style.backgroundColor = 'rgb(189, 255, 193)'
+                                refLow.style.backgroundColor = '#dcfce7'
                                 refLow.style.outline = '0px'
                                 }}>
-                                <FaPlus size={20} style={{display: 'inline-block', alignContent: 'center', marginBottom: '2%'}}/> Add Task
+                                <FaPlus aria-hidden='true' size={20} style={{display: 'inline-block', alignContent: 'center', marginBottom: '2%'}}/> Add Task
                             </button>
                         </div>
                         {inputCreateTask.length > 0 ? (
@@ -198,11 +198,11 @@ export default function Tasks () {
                     {/* -------------------------- Filtros y busqueda -------------------------------- */} 
                     <div data-aos='fade-left' className={styles.filters_and_search}>
                         <div className={styles.input_filters_and_search}>
-                            <FaSearch size={20}/>
-                            <input value={inputSearchTask} onChange={(e) => setInputSearchTask(e.target.value)} placeholder='Search Task...'></input>
+                            <FaSearch aria-hidden='true' size={20}/>
+                            <input value={inputSearchTask} onChange={(e) => setInputSearchTask(e.target.value)} placeholder='Search Task...' aria-label='Search task'></input>
                         </div>
                         <div className={styles.select_filters_and_search_filter}>
-                            <select value={selectPriority} onChange={(e) => setSelectPriority(e.target.value)}>
+                            <select value={selectPriority} onChange={(e) => setSelectPriority(e.target.value)} aria-label='Filter by priority'>
                                 <option value='all'>Filter by: [All Tasks]</option>
                                 <option value='high'>Filter by: [High Tasks]</option>
                                 <option value='medium'>Filter by: [Medium Tasks]</option>
@@ -210,15 +210,15 @@ export default function Tasks () {
                             </select>
                         </div>
                         <div className={styles.select_filters_and_search_sort}>
-                            <select value={selectDeadLine} onChange={(e) => setSelectDeadLine(e.target.value)}>
+                            <select value={selectDeadLine} onChange={(e) => setSelectDeadLine(e.target.value)} aria-label='Sort by deadline'>
                                 <option value='asc'>Sort by: [Deadline Asc]</option>
                                 <option value='desc'>Sort by: [Deadline Descs]</option>
                             </select>
                         </div>
                         <div className={styles.priority_filters_and_search}>
-                            <p style={{backgroundColor: 'red'}}>High</p>
-                            <p style={{backgroundColor: 'yellow'}}>Medium</p>
-                            <p style={{backgroundColor: 'green'}}>Low</p>
+                            <p style={{backgroundColor: '#fee2e2', color: '#b91c1c'}}>High</p>
+                            <p style={{backgroundColor: '#fef3c7', color: '#92400e'}}>Medium</p>
+                            <p style={{backgroundColor: '#dcfce7', color: '#166534'}}>Low</p>
                         </div>
                     </div>
                     {/* ---------------------------- Tasks -------------------------------*/}

@@ -19,10 +19,10 @@ export default function NextDoPro () {
       <div className={styles.main_window}>
         <div className={styles.text_and_button_main_window}>
           <div className={styles.text_main_window}>
-            <h1>NextDo Pro<br /> The chaos ends here.</h1>
+            <h1><span>NextDo Pro</span><br /> The chaos ends here.</h1>
             <p>Manage task with priorities, dynamic filters and deadline sorting for maximum productivity.</p>
           </div>
-          <button onClick={() => router.push('/tasks')}><FaBolt style={{display: 'inline', color: 'yellow'}}/>  Get started now</button>
+          <button onClick={() => router.push('/tasks')}><FaBolt aria-hidden='true' style={{display: 'inline', color: '#fde047'}}/>  Get started now</button>
         </div>
         <div className={styles.image_main_window}>
           <Image src={portada} width={500} height={500} alt='Foto de portada'/>

@@ -86,7 +86,7 @@ export default function NavBar(){
                     </div>                    
                 </div>
                 {pathName !== '/login' && pathName !== '/signup' && pathName !== '/' ? (
-                    <div onClick={() => {setOpenLogout(true)}} className={styles.log_out_navbar}>                         
+                    <div onClick={() => {setOpenLogout(true)}} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpenLogout(true) } }} role='button' tabIndex={0} aria-label='Log out' className={styles.log_out_navbar}>                         
                         <div className={styles.log_out_container}>
                             <Image src={image_log_out} width={50} height={50} alt='image log out' />
                             <p>Log out</p>
