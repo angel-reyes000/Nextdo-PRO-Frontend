@@ -49,7 +49,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                     if (!token) setShowWarning(true);
                 }, []);
 
-            if (!showWarning) return null;
+            if (!showWarning) return null;            
 
             return (
                 <div className={styles.warning_login}>
@@ -57,6 +57,10 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                 </div>    
             ) 
     }
+
+    useEffect(() => {
+        console.log("Fecha: ", tasks.map(task => console.log(task)))
+    }, [])
 
     if (tasks.length === 0) {
         return (
@@ -111,7 +115,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -136,7 +140,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -161,7 +165,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -186,7 +190,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -211,7 +215,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -236,7 +240,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -261,7 +265,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -286,7 +290,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -311,7 +315,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -336,7 +340,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -361,7 +365,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -386,7 +390,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -411,7 +415,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -436,7 +440,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -461,7 +465,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
@@ -486,7 +490,7 @@ export default function Task ({ tasks, inputSearchTask, selectPriority, selectDe
                                 <p>{task.description}</p>
                             </div>
                             <div className={styles.date_tasks}>
-                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline}</p>
+                                <p><FaCalendar style={{display: 'inline'}}/> {task.deadline ? task.deadline.split('T')[0] : ''}</p>
                             </div>
                         </div>
                         <OpenThreeDots id={task.id} onDeleteTask={onDeleteTask}/>
