@@ -6,7 +6,7 @@ import Logo from '../../public/assets/NavBar_images/logo nextdo pro navbar.png'
 import lupa from '../../public/assets/NavBar_images/search navbar nextdo pro.png'
 import image_log_out from '../../public/assets/NavBar_images/logout_nextdopro.png';
 import image_login_signup from '../../public/assets/Sign_in_images/imagen _login_signup.png'
-import { FaSearch } from 'react-icons/fa'
+import { FaSearch, FaSignOutAlt } from 'react-icons/fa'
 import { useRouter, usePathname } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
 import 'aos/dist/aos.css';
@@ -33,22 +33,36 @@ export default function NavBar(){
 
         return (
             <>
-                <dialog data-aos="zoom-in"  ref={logoutRef} className={styles.modal_card_log_out}>
+                <dialog
+                    ref={logoutRef}
+                    className={styles.modal_card_log_out}
+                    onClose={() => setOpenLogout(false)}
+                    onClick={(e) => {
+                        if (e.target === logoutRef.current) {
+                            logoutRef.current.close();
+                            setOpenLogout(false)
+                        }
+                    }}>
                     <div className={styles.modal_log_out}>
+                        <div className={styles.modal_icon_log_out}>
+                            <FaSignOutAlt />
+                        </div>
                         <div className={styles.modal_text_log_out}>
+                            <h3>Log out</h3>
                             <p>Are you sure you want to log out?</p>
+                            <span>You will need to sign in again to see your tasks.</span>
                         </div>
                         <div className={styles.modal_buttons_log_out}>
-                            <button onClick={() => {
+                            <button className={styles.modal_button_cancel} onClick={() => {
+                                logoutRef.current.close();
+                                setOpenLogout(false)
+                                }} value='no'>Cancel</button>
+                            <button className={styles.modal_button_confirm} onClick={() => {
                                 localStorage.removeItem('token');
                                 router.push('/login');
                                 logoutRef.current.close();
                                 setOpenLogout(false)
-                                }} value='yes'>Yes</button>
-                            <button onClick={() => {
-                                logoutRef.current.close();
-                                setOpenLogout(false)
-                                }} value='no'>No</button>
+                                }} value='yes'>Yes, log out</button>
                         </div>
                     </div>
                 </dialog>
